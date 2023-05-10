@@ -29,6 +29,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/edit-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'edit']);
     Route::put('/update-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'update']);
     Route::get('/delete-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete']);
+    Route::get('/view-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'view']);
 
     Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'index']);
     Route::get('add-post', [App\Http\Controllers\Admin\PostController::class, 'create']);
@@ -36,6 +37,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/edit-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'edit']);
     Route::put('/update-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'update']);
     Route::get('/delete-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'delete']);
+    Route::get('/view-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'view']);
+
 
 });
 

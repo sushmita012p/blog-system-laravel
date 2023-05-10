@@ -14,8 +14,10 @@
     @csrf
     <div class="form-group">
     <label for="formGroupExampleInput">category</label>
-    <select name="" class="form-control">
-        <option value=""></option>
+    <select class="form-control" name="category_id">
+      @foreach($category as $item) 
+        <option value="{{$item->id}}">{{$item->name}}</option>
+        @endforeach
 </select>
 </div>
   <div class="form-group">

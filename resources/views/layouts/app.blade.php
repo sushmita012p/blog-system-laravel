@@ -29,7 +29,7 @@
                 Login
             </a>
         @elseif(request()->is('home'))
-            <a class="navbar-brand" href="{{ url('/dashboard') }}">
+            <a class="navbar-brand" href="{{ url('admin/dashboard') }}">
                 Blogs
             </a>
         @else

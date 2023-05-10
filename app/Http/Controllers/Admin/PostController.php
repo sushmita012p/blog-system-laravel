@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -13,7 +14,8 @@ class PostController extends Controller
         return view('admin.post.index',compact('post'));
     }
     public function create(){
-        return view('admin.post.create');
+        $category=Category::all();
+        return view('admin.post.create',compact('category'));
     }
     public function store(Request $request){
         $request->validate(
@@ -42,5 +44,9 @@ class PostController extends Controller
     public function delete($id){
         $post=Post::find($id)->delete();
         return redirect('admin/posts')->with('message', 'Post deleted successfully');
+    }
+    public function view($id){
+        $post=Post::find($id);
+        return view('admin.post.view', compact('post'));
     }
 }

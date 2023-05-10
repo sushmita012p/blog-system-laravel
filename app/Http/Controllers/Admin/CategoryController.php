@@ -46,4 +46,8 @@ class CategoryController extends Controller
         $category=Category::find($id)->delete();
         return redirect('admin/category')->with('message', 'category deleted successfully');
     }
+    public function view($id){
+        $category=Category::find($id);
+        return view('admin.category.view', compact('category'));
+    }
 }
