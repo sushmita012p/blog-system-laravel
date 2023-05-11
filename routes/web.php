@@ -42,3 +42,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 });
 
+Route::middleware(['auth', 'isUser'])->group(function () {
+    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index']);
+});
+
+
+
