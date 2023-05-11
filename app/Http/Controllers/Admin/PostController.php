@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Category;
 
 class PostController extends Controller
 {
     public function index(){
-        $post=Post::all();
-        return view('admin.post.index',compact('post'));
+        $post=Post::where('user_id', Auth::user()->id)->get();
+        return view('admin.post.index', compact('post'));
     }
     public function create(){
         $category=Category::all();
@@ -26,6 +27,7 @@ class PostController extends Controller
             ]
             );
         $data=$request->all();
+        $data['user_id'] = Auth::user()->id;
         $post = Post::create($data);
 
         return redirect('admin/posts')->with('message','Post Added Successfully');
