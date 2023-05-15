@@ -34,10 +34,10 @@ class LoginController extends Controller
             return redirect('admin/dashboard')->with('status','Welcome to Admin Dashboard');
         }
         elseif(Auth::user()->role_as=='0'){
-            return redirect('/blog')->with('status','Welcome to Blogs');
+            return redirect('/blogs')->with('status','User Logged In Successfully');
         }
         else{
-            return redirect('/');
+            return redirect('/')->with('status','Please login first');
         }
     }
 

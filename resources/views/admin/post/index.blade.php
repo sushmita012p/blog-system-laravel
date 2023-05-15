@@ -13,7 +13,7 @@
     <div class="card">
         <div class="card-header">
             <h4>Posts:
-                <a href="{{url('admin/add-post')}}" class="btn btn-primary float-right">Add Post</a>
+                <a href="{{route('blogs.create')}}" class="btn btn-primary float-right">Add Post</a>
             </h4>
         </div>
         <div class="card-body">
@@ -41,9 +41,11 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->description}}</td>
                         <td>{{$data->image}}</td>
-                        <td class="text-center"><a href="{{url('admin/view-post/'.$data->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
-                        <td class="text-center"><a href="{{url('admin/edit-post/'.$data->id)}}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                        <td class="text-center"><a href="{{url('admin/delete-post/'.$data->id)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                        <td class="text-center"><a href="{{route('blogs.show',['id' => $data->id])}}" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
+                        
+                        <td class="text-center"><a href="{{ route('blogs.edit', $data->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
+                       
+                        <td class="text-center"><a href="{{route('blogs.destroy',['id' => $data->id])}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 <h3 class="text-center"> Edit Post </h3>
-<form action="{{url('admin/update-post/'.$post->id)}}" method ="POST">
+<form action="{{ route('blogs.update', $post->id) }}" method ="POST">
     @csrf
     @method('PUT')
   <div class="form-group">

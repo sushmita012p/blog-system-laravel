@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index(){
         $post=Post::where('user_id', Auth::user()->id)->get();
-        return view('admin.post.index', compact('post'));
+        return view ('admin.post.index', compact('post'));
     }
     public function create(){
         $category=Category::all();
@@ -30,7 +30,7 @@ class PostController extends Controller
         $data['user_id'] = Auth::user()->id;
         $post = Post::create($data);
 
-        return redirect('admin/posts')->with('message','Post Added Successfully');
+        return redirect('admin/blogs')->with('message','Post Added Successfully');
     }
     public function edit($id){
         $post=Post::find($id);
@@ -41,11 +41,11 @@ class PostController extends Controller
         
         $post->update($request->all());
 
-        return redirect('admin/posts')->with('message','Post Updated Successfully');
+        return redirect('admin/blogs')->with('message','Post Updated Successfully');
     }
-    public function delete($id){
+    public function destroy($id){
         $post=Post::find($id)->delete();
-        return redirect('admin/posts')->with('message', 'Post deleted successfully');
+        return redirect('admin/blogs')->with('message', 'Post deleted successfully');
     }
     public function view($id){
         $post=Post::find($id);

@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
@@ -31,20 +32,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/delete-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete']);
     Route::get('/view-category/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'view']);
 
-    Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'index']);
-    Route::get('add-post', [App\Http\Controllers\Admin\PostController::class, 'create']);
-    Route::post('add-post', [App\Http\Controllers\Admin\PostController::class, 'store']);
-    Route::get('/edit-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'edit']);
-    Route::put('/update-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'update']);
-    Route::get('/delete-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'delete']);
-    Route::get('/view-post/{id}',[App\Http\Controllers\Admin\PostController::class, 'view']);
-
-
+    Route::get('blogs', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('blogs.index');
+    Route::get('blogs/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('blogs.create');
+    Route::post('blogs', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('blogs.store');
+    Route::delete('/blogs/{id}',[App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('blogs.destroy');
+    Route::get('/blogs/{id}',[App\Http\Controllers\Admin\PostController::class, 'view'])->name('blogs.show');
+    Route::get('/blogs/{id}/edit',[App\Http\Controllers\Admin\PostController::class, 'edit'])->name('blogs.edit');
+    Route::put('/blogs/{id}',[App\Http\Controllers\Admin\PostController::class, 'update'])->name('blogs.update');
 });
 
-Route::middleware(['auth', 'isUser'])->group(function () {
-    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index']);
-});
-
+Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('users.index');
+Route::get('/blogs/{id}',[App\Http\Controllers\BlogController::class, 'view'])->name('users.show');
 
 

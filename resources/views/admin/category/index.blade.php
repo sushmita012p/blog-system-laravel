@@ -50,7 +50,7 @@
             </table>
         </div>
     </div>
-    <a href="{{url('admin/posts')}}" class="btn btn-primary mt-2">View Post</a>
+    <a href="{{url('admin/blogs')}}" class="btn btn-primary mt-2">View Post</a>
     <a href="{{url('admin/dashboard')}}" class="btn btn-warning mt-2">Back to Dashboard</a>
 
     </div>

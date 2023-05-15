@@ -9,7 +9,7 @@
   <title>Blogs</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
     <div class="card">
         <div class="card-header">
            <h4>Blogs</h4>
@@ -34,14 +34,16 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->description}}</td>
                         <td>{{$data->image}}</td>
-                        <td class="text-center"><a href="" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
+                        <td class="text-center"><a href="{{route('users.show',['id' => $data->id])}}" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
                         
                     </tr>
                     @endforeach
                 </tbody>
+               
             </table>
         </div>
     </div>
+     <a href="{{url('/')}}" class="btn btn-warning mt-2">Back to Home</a>
     </div>
 
 </body>

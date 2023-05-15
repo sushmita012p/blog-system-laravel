@@ -9,8 +9,8 @@
 </head>
 <body>
 <div class="container">
-<h3 class="text-center"> Add Post <a href="{{url('admin/add-post')}}"></a> </h3>
-<form action="{{url('admin/add-post')}}" method ="POST">
+<h3 class="text-center">  <a href="{{route('blogs.create')}}"></a> </h3>
+<form action="{{route('blogs.store')}}" method ="POST">
     @csrf
     <div class="form-group">
     <label for="formGroupExampleInput">category</label>

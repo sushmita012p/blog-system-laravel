@@ -13,4 +13,8 @@ class BlogController extends Controller
         $post=Post::all();
         return view('blog', compact('post'));
     }
+    public function view($id){
+        $post=Post::find($id);
+        return view('view', compact('post'));
+    }
 }
