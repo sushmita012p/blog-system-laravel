@@ -44,4 +44,5 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('users.index');
 Route::get('/blogs/{id}',[App\Http\Controllers\BlogController::class, 'view'])->name('users.show');
 
+Route::post('/comments',[App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
