@@ -73,7 +73,7 @@
         <div class="buttons">
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/home') }}">Hello, {{ Auth::user()->name }}</a>
+                    <a href="{{ url('/home') }}">Hello, {{ Auth::user()->firstname }}{{ Auth::user()->lastname }}</a>
                 @else
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}">Register</a>

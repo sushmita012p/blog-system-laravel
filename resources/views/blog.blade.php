@@ -48,14 +48,9 @@
             </div>
         </div>
         <a href="{{ url('/') }}" class="btn btn-info mt-2">Back to Home</a>
-        @if (Route::has('login'))
-            @auth
-                <a href="{{ url('/home') }}" class=":text-white">Hello,
-                    {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</a>
-            @endauth
-        @endif
+
         @auth
-            <a href="{{ route('logout') }}"
+            <a href="{{ route('logout') }}" class="btn btn-danger mt-2"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
             </a>
