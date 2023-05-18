@@ -14,7 +14,7 @@ class BlogController extends Controller
         return view('blog', compact('post'));
     }
     public function view($id){
-        $post=Post::find($id);
+        $post=Post::with('comments')->find($id);
         return view('view', compact('post'));
     }
 }
