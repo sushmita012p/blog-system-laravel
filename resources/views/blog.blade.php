@@ -49,15 +49,15 @@
         </div>
         <a href="{{ url('/') }}" class="btn btn-info mt-2">Back to Home</a>
 
-
-        <a href="{{ route('logout') }}" class="btn btn-danger mt-2"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Logout
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-
+        @auth
+            <a href="{{ route('logout') }}" class="btn btn-danger mt-2"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @endauth
     </div>
 
 </body>
