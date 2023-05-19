@@ -36,7 +36,8 @@
                                 <td>{{ $data->category->name }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>{{ $data->description }}</td>
-                                <td>{{ $data->image }}</td>
+                                <td><img src="{{ asset('image/' . $data->image) }}" alt="profile Pic" height="50"
+                                        width="50"></td>
                                 <td class="text-center"><a href="{{ route('users.show', ['id' => $data->id]) }}"
                                         class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a></td>
 
