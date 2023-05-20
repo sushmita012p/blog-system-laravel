@@ -44,7 +44,7 @@
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->description }}</td>
                             <td> <img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
-                                    alt="image">
+                                    alt="images">
 
                             </td>
                             <td class="text-center"><a href="{{ route('blogs.show', ['id' => $data->id]) }}"
