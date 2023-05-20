@@ -31,17 +31,17 @@
                     </thead>
                     <tbody>
                         @foreach ($post as $data)
-                            <tr>
-                                <td>{{ $data->id }}</td>
-                                <td>{{ $data->category->name }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->description }}</td>
-                                <td><img src="{{ asset('image/' . $data->image) }}" alt="profile Pic" height="50"
-                                        width="50"></td>
-                                <td class="text-center"><a href="{{ route('users.show', ['id' => $data->id]) }}"
-                                        class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a></td>
+                        <tr>
+                            <td>{{ $data->id }}</td>
+                            <td>{{ $data->category->name }}</td>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->description }}</td>
+                            <td> <img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
+                                    alt="image"></td>
+                            <td class="text-center"><a href="{{ route('users.show', ['id' => $data->id]) }}"
+                                    class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a></td>
 
-                            </tr>
+                        </tr>
                         @endforeach
                     </tbody>
 
@@ -51,13 +51,13 @@
         <a href="{{ url('/') }}" class="btn btn-info mt-2">Back to Home</a>
 
         @auth
-            <a href="{{ route('logout') }}" class="btn btn-danger mt-2"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+        <a href="{{ route('logout') }}" class="btn btn-danger mt-2"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         @endauth
     </div>
 

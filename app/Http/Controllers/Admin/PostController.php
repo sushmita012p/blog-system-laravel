@@ -19,18 +19,26 @@ class PostController extends Controller
         return view('admin.post.create',compact('category'));
     }
     public function store(Request $request){
-        $request->validate(
-            [
-                'name'=>'required',
-                'description'=>'required',
-                'image'=>'required',
-            ]
-            );
-        $data=$request->all();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        ]);
+    
+        $data = $request->all();
         $data['user_id'] = Auth::user()->id;
+    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+    
+            $file->storeAs('images', $filename, 'public');
+            $data['image'] = $filename;
+        }
+    
         $post = Post::create($data);
-
-        return redirect('admin/blogs')->with('message','Post Added Successfully');
+    
+        return redirect('admin/blogs')->with('message', 'Post Added Successfully');
     }
     public function edit($id){
         $post=Post::find($id);

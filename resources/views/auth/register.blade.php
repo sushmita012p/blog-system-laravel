@@ -74,6 +74,11 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        @if($errors->any())
+@foreach($errors->all() as $error)
+<div>{{$error}}</div>
+@endforeach
+@endif
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
                 @if (session('message'))
-                    <div class="alert alert-success">{{ session('message') }}</div>
+                <div class="alert alert-success">{{ session('message') }}</div>
                 @endif
                 <table class="table table-bordered">
                     <thead>
@@ -38,31 +38,32 @@
                     </thead>
                     <tbody>
                         @foreach ($post as $data)
-                            <tr>
-                                <td>{{ $data->id }}</td>
-                                <td>{{ $data->category->name }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->description }}</td>
-                                <td> <img src="{{ asset('image/' . $data->image) }}" alt="profile Pic" height="50"
-                                        width="50">
-                                </td>
-                                <td class="text-center"><a href="{{ route('blogs.show', ['id' => $data->id]) }}"
-                                        class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
+                        <tr>
+                            <td>{{ $data->id }}</td>
+                            <td>{{ $data->category->name }}</td>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->description }}</td>
+                            <td> <img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
+                                    alt="image">
 
-                                <td class="text-center"><a href="{{ route('blogs.edit', $data->id) }}"
-                                        class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                                <td class="text-center">
-                                    <form action="{{ route('blogs.destroy', ['id' => $data->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                            </td>
+                            <td class="text-center"><a href="{{ route('blogs.show', ['id' => $data->id]) }}"
+                                    class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
 
-                                <!-- <td class="text-center"><a href="{{ route('blogs.destroy', ['id' => $data->id]) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td> -->
-                            </tr>
+                            <td class="text-center"><a href="{{ route('blogs.edit', $data->id) }}"
+                                    class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
+                            <td class="text-center">
+                                <form action="{{ route('blogs.destroy', ['id' => $data->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+
+                            <!-- <td class="text-center"><a href="{{ route('blogs.destroy', ['id' => $data->id]) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td> -->
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

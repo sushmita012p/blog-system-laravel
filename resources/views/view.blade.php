@@ -23,8 +23,8 @@
                 <p>{{ $post->name }}</p>
                 <h5>Post Description:</h5>
                 <p>{{ $post->description }}</p>
-                <h5>Image: </h5> <img src="{{ asset('image/' . $post->image) }}" alt="profile Pic" height="200"
-                    width="200">
+                <h5>Image: </h5> <img src="{{ url('storage/images/' . $post->image) }}" width="50px" height="50px"
+                    alt="image">
             </div>
         </div>
 
