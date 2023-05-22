@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="card">
             <div class="card-header">
                 <h4>Posts:
@@ -61,8 +61,6 @@
                                     </button>
                                 </form>
                             </td>
-
-                            <!-- <td class="text-center"><a href="{{ route('blogs.destroy', ['id' => $data->id]) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td> -->
                         </tr>
                         @endforeach
                     </tbody>

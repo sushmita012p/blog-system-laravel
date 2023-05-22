@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -44,13 +46,31 @@ class PostController extends Controller
         $post=Post::find($id);
         return view('admin.post.edit', compact('post'));
     }
-    public function update($id, Request $request){
-        $post=Post::find($id);
-        
-        $post->update($request->all());
+    public function update($id, Request $request)
+{
+    $post = Post::find($id);
 
-        return redirect('admin/blogs')->with('message','Post Updated Successfully');
+    $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'image' => 'image|mimes:jpeg,png,jpg,gif',
+    ]);
+
+    $data = $request->all();
+
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+    
+        $file->storeAs('images', $filename, 'public');
+        $data['image'] = $filename;
+
     }
+
+    $post->update($data);
+    return redirect('admin/blogs')->with('message', 'Post Updated Successfully');
+}
+
     public function destroy($id){
         $post=Post::find($id)->delete();
         return redirect('admin/blogs')->with('message', 'Post deleted successfully');

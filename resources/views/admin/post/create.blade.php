@@ -11,13 +11,13 @@
 </head>
 
 <body>
-  <div class="container">
-    <h3 class="text-center"> <a href="{{route('blogs.create')}}"></a> </h3>
+  <div class="container mt-5">
+    <h3 class="text-center"> Add Post <a href="{{route('blogs.create')}}"></a> </h3>
 
     <form action="{{route('blogs.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="form-group">
-        <label for="formGroupExampleInput">category</label>
+        <label for="formGroupExampleInput">Category</label>
         <select class="form-control" name="category_id">
           @foreach($category as $item)
           <option value="{{$item->id}}">{{$item->name}}</option>

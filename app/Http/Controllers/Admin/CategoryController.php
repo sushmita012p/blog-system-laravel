@@ -18,19 +18,27 @@ class CategoryController extends Controller
 
         return view('admin.category.create');
     }
-    public function store(Request $request){
-        $request->validate(
-            [
-                'name'=>'required',
-                'description'=>'required',
-                'image'=>'required',
-            ]
-            );
-        $data=$request->all();
-        $category = Category::create($data);
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        return redirect('admin/category')->with('message','Category Added Successfully');
+    $data = $request->all();
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('images', $imageName, 'public');
+        $data['image'] = $imageName;
     }
+
+    $category = Category::create($data);
+    return redirect('admin/category')->with('message', 'Category Added Successfully');
+}
+
     public function edit($id){
         $category=Category::find($id);
         return view('admin.category.edit', compact('category'));
