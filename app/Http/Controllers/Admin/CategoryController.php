@@ -58,4 +58,5 @@ class CategoryController extends Controller
         $category=Category::find($id);
         return view('admin.category.view', compact('category'));
     }
+
 }
