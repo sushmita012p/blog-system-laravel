@@ -56,7 +56,9 @@
                                 <form action="{{ route('blogs.destroy', ['id' => $data->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="submit"
+                                        onclick=" return confirm('Are you sure you want to delete this post?')"
+                                        class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>

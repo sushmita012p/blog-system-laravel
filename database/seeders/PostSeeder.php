@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
        
 
         DB::table('posts')->insert([
-            'name' => 'Chess',
+            'name' => 'Stories from the World of Sports',
             'description' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
             'image' => '1684564470.jpg',
             'user_id' => 1,
@@ -30,7 +30,7 @@ class PostSeeder extends Seeder
         ]);
 
         DB::table('posts')->insert([
-            'name' => 'Laravel',
+            'name' => 'Exploring the Latest Technological Advancements',
             'description' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
             'image' => '1684564757.jpg',
             'user_id' => 1,

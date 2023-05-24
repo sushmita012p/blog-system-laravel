@@ -17,43 +17,30 @@
             <div class="card-header">
                 <h4>Blogs</h4>
                 <div class="mt-3">
-                    <h5>Filter by Category:</h5>
-                    <select class="form-control" onchange="location = this.value;">
-                        <option value="{{ route('blogs.index') }}">All</option>
+                    <select class="form-control" style="width: 200px;" onchange="location = this.value;">
+                        <option value="{{ route('blogs.index') }}">All Categories</option>
                         @foreach ($categories as $category)
                         <option value="{{ url('category/'.$category->id) }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
-
             </div>
             <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Category</th>
-                            <th>Post Name</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>View</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($post as $post)
-                        <tr>
-                            <td>{{ $post->id }}</td>
-                            <td>{{ $post->category->name }}</td>
-                            <td>{{ $post->name }}</td>
-                            <td>{{ $post->description }}</td>
-                            <td> <img src="{{ url('storage/images/' . $post->image) }}" width="50px" height="50px"
-                                    alt="image"></td>
-                            <td class="text-center"><a href="{{ route('users.show', ['id' => $post->id]) }}"
-                                    class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="row">
+                    @foreach ($post as $post)
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="{{ url('storage/images/' . $post->image) }}" alt="image" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post->name }}</h5>
+                                <p class="card-text">{{ $post->description }}</p>
+                                <a href="{{ route('users.show', ['id' => $post->id]) }}"
+                                    class="btn btn-info btn-sm">Visit</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
         <a href="{{ url('/') }}" class="btn btn-info mt-2">Back to Home</a>

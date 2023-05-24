@@ -29,43 +29,42 @@
         </div>
 
         @if (Auth::check())
-            <div class="comment-desc mt-4">
-                @if (session('message'))
-                    <h6 class="alert alert-warning">{{ session('message') }}</h6>
-                @endif
-                <div class="card card-body">
-                    <h4 class="card-title text-center">Leave a Comment:</h4>
-                    <form action="{{ route('comments.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+        <div class="comment-desc mt-4">
+            @if (session('message'))
+            <h6 class="alert alert-warning">{{ session('message') }}</h6>
+            @endif
+            <div class="card card-body">
+                <h4 class="card-title text-center">Leave a Comment:</h4>
+                <form action="{{ route('comments.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                        <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
-                        <button type="submit" class="btn btn-primary mt-3">Submit Comment</button>
-                    </form>
-                </div>
+                    <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Submit Comment</button>
+                </form>
             </div>
+        </div>
         @endif
 
         <div class="comment-details">
             <h4 class="mt-3">Comments: </h4>
             <div class="card card-body">
                 @foreach ($post->comments as $comment)
-                    <h6 class="card-title mt-2">{{ $comment->user->firstname }} {{ $comment->user->lastname }}
-                        <small>Commented on {{ $comment->created_at }}</small>
-                    </h6>
+                <h6 class="card-title mt-2">{{ $comment->user->firstname }} {{ $comment->user->lastname }}
+                    <small>Commented on {{ $comment->created_at }}</small>
+                </h6>
 
-                    <p>{{ $comment->comment }}</p>
-                    @if (Auth::check() && Auth::id() == $comment->user_id)
-                        <div>
-                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    onclick=" return confirm('Are you sure you want to delete this comment?')"
-                                    class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
-                            </form>
-                        </div>
-                    @endif
+                <p>{{ $comment->comment }}</p>
+                @if (Auth::check() && Auth::id() == $comment->user_id)
+                <div>
+                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick=" return confirm('Are you sure you want to delete this comment?')"
+                            class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
+                    </form>
+                </div>
+                @endif
                 @endforeach
             </div>
         </div>
