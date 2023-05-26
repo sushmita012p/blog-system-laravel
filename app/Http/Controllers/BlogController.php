@@ -10,20 +10,23 @@ use App\Models\Category;
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $categories = Category::all();
         $post=Post::all();
+
+        if($request->query('categories')){
+            $post=Post::where('category_id',$request->query('categories'))->get();
+        }
         return view('blog', compact('post','categories'));
     }
     public function view($id){
-        $post=Post::with('comments')->find($id);
-        return view('view', compact('post'));
+        $post = Post::with('comments')->find($id);
+        $relatedBlogs = Post::where('category_id', $post->category_id)
+                        ->where('id', '!=', $post->id)
+                        ->take(3)
+                        ->get();
+
+    return view('view', compact('post', 'relatedBlogs'));
     }
-    public function viewCategoryPost($id)
-    {
-        $categories = Category::findOrFail($id);
-        $posts = $categories->posts;
-    
-        return view('index', compact('categories', 'posts'));
-    }
+  
 }

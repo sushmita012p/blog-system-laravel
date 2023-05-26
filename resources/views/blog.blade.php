@@ -17,12 +17,17 @@
             <div class="card-header">
                 <h4>Blogs</h4>
                 <div class="mt-3">
-                    <select class="form-control" style="width: 200px;" onchange="location = this.value;">
-                        <option value="{{ route('blogs.index') }}">All Categories</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ url('category/'.$category->id) }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
+                    <form action="{{route('users.index')}}" method="GET">
+                        <select class="form-control" style="width: 200px;" name="categories">
+                            <option value="{{ route('users.index') }}">All Categories</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @if(request()->query('categories') == $category->id)
+                                selected
+                                @endif>{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-success mt-2">Filter</button>
+                    </form>
                 </div>
             </div>
             <div class="card-body">

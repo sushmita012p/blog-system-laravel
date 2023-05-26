@@ -28,7 +28,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/category/{id}', [BlogController::class, 'viewCategoryPost']);
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
