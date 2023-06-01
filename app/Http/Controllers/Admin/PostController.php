@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -18,7 +19,8 @@ class PostController extends Controller
     }
     public function create(){
         $category=Category::all();
-        return view('admin.post.create',compact('category'));
+        $tags=Tag::all();
+        return view('admin.post.create',compact('category','tags'));
     }
     public function store(Request $request){
         $request->validate([
@@ -39,7 +41,8 @@ class PostController extends Controller
         }
     
         $post = Post::create($data);
-    
+        $post->tags()->sync($request->tag_id);
+    	
         return redirect('admin/blogs')->with('message', 'Post Added Successfully');
     }
     public function edit($id){

@@ -12,11 +12,12 @@ class BlogController extends Controller
 {
     public function index(Request $request){
         $categories = Category::all();
-        $post=Post::all();
+        $query = Post::query();
 
-        if($request->query('categories')){
-            $post=Post::where('category_id',$request->query('categories'))->get();
+        if($request->query('categories') && $request->query('categories') != 'all'){
+            $query = $query->where('category_id',$request->query('categories'));
         }
+        $post = $query->get();
         return view('blog', compact('post','categories'));
     }
     public function view($id){

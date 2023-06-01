@@ -9,15 +9,15 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <title>Category</title>
+    <title>Tag</title>
 </head>
 
 <body>
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Categories:
-                    <a href="{{url('admin/add-category')}}" class="btn btn-primary float-right">Add Category</a>
+                <h4>Tags:
+                    <a href="{{url('admin/add-tag')}}" class="btn btn-primary float-right">Add Tag</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -29,27 +29,23 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category Name</th>
-                            <th>Description</th>
-                            <th>Image</th>
+                            <th>Tag Name</th>
                             <th>View</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($category as $data)
+                        @foreach($tag as $data)
                         <tr>
                             <td>{{$data->id}}</td>
                             <td>{{$data->name}}</td>
-                            <td>{{$data->description}}</td>
-                            <td><img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
-                                    alt="images"></td>
-                            <td class="text-center"><a href="{{url('admin/view-category/'.$data->id)}}"
+
+                            <td class="text-center"><a href="{{url('admin/view-tag/'.$data->id)}}"
                                     class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
-                            <td class="text-center"><a href="{{url('admin/edit-category/'.$data->id)}}"
+                            <td class="text-center"><a href="{{url('admin/edit-tag/'.$data->id)}}"
                                     class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                            <td class="text-center"><a href="{{url('admin/delete-category/'.$data->id)}}"
+                            <td class="text-center"><a href="{{url('admin/delete-tag/'.$data->id)}}"
                                     class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
                         </tr>
                         @endforeach
@@ -58,7 +54,8 @@
             </div>
         </div>
         <a href="{{url('admin/blogs')}}" class="btn btn-primary mt-2">View Post</a>
-        <a href="{{url('admin/tag')}}" class="btn btn-primary mt-2">View Tag</a>
+        <a href="{{url('admin/category')}}" class="btn btn-primary mt-2">View Category</a>
+
         <a href="{{url('admin/dashboard')}}" class="btn btn-warning mt-2">Back to Dashboard</a>
 
     </div>

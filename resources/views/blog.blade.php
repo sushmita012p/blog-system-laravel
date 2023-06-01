@@ -19,7 +19,7 @@
                 <div class="mt-3">
                     <form action="{{route('users.index')}}" method="GET">
                         <select class="form-control" style="width: 200px;" name="categories">
-                            <option value="{{ route('users.index') }}">All Categories</option>
+                            <option value="all">All Categories</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @if(request()->query('categories') == $category->id)
                                 selected

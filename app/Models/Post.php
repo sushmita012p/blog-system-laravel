@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Tag;
 
 class Post extends Model
 {
@@ -31,5 +32,11 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class, 'post_id', 'id');
     }
+
+    public function tags()
+{
+    return $this->belongsToMany(Tag::class, 'post_tag', 'post_id','tag_id');
+}
+
     
     }

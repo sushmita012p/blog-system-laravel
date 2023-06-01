@@ -27,6 +27,8 @@
                 <a href="{{ url('admin/category') }}" class="btn btn-primary btn-sm">View Category</a>
                 <br>
                 <a href="{{ url('admin/blogs') }}" class="btn btn-primary btn-sm mt-3">View Post</a>
+                <br>
+                <a href="{{ url('admin/tag') }}" class="btn btn-primary btn-sm mt-3">View Tag</a>
 
             </div>
         </div>

@@ -70,6 +70,8 @@
             </div>
         </div>
         <a href="{{ url('admin/category') }}" class="btn btn-primary mt-2">View Category</a>
+                <a href="{{url('admin/tag')}}" class="btn btn-primary mt-2">View Tag</a>
+
         <a href="{{ url('admin/dashboard') }}" class="btn btn-warning mt-2">Back to Dashboard</a>
     </div>
 

@@ -32,6 +32,16 @@
         <label for="formGroupExampleInput2">Description</label>
         <textarea name="description" class="form-control" rows="4"></textarea>
       </div>
+
+      <div class="form-group">
+        <label for="formGroupExampleInput">Tags</label>
+        <select class="form-control" name="tag_id[]" multiple="multiple" required>
+          @foreach($tags as $tag)
+          <option value="{{$tag->id}}">{{$tag->name}}</option>
+          @endforeach
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="formGroupExampleInput2">Image</label>
         <input type="file" class="form-control" id="formGroupExampleInput3" name="image" placeholder="Enter image">

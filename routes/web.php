@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\commentController;
 
 /*
@@ -39,6 +40,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
     Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
     Route::get('/view-category/{id}', [CategoryController::class, 'view']);
+
+    Route::get('/add-tag', [TagController::class, 'create']);
+    Route::get('/tag', [TagController::class, 'index']);
+    Route::post('/add-tag', [TagController::class, 'store']);
+    Route::put('/update-tag/{id}', [TagController::class, 'update']);
+    Route::get('/edit-tag/{id}', [TagController::class, 'edit']);
+    Route::get('/delete-tag/{id}', [TagController::class, 'delete']);
+    Route::get('/view-tag/{id}', [TagController::class, 'view']);
 
     Route::get('blogs/create', [PostController::class, 'create'])->name('blogs.create');
     Route::get('blogs', [PostController::class, 'index'])->name('blogs.index');
