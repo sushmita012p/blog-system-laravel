@@ -24,42 +24,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/add-category', [CategoryController::class, 'create']);
-    Route::get('/category', [CategoryController::class, 'index']);
-    Route::post('/add-category', [CategoryController::class, 'store']);
-    Route::put('/update-category/{id}', [CategoryController::class, 'update']);
-    Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
-    Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
-    Route::get('/view-category/{id}', [CategoryController::class, 'view']);
 
-    Route::get('/add-tag', [TagController::class, 'create']);
-    Route::get('/tag', [TagController::class, 'index']);
-    Route::post('/add-tag', [TagController::class, 'store']);
-    Route::put('/update-tag/{id}', [TagController::class, 'update']);
-    Route::get('/edit-tag/{id}', [TagController::class, 'edit']);
-    Route::get('/delete-tag/{id}', [TagController::class, 'delete']);
-    Route::get('/view-tag/{id}', [TagController::class, 'view']);
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories/{id}', [CategoryController::class, 'view'])->name('categories.show');
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+    Route::get('/tags/create', [TagController::class, 'create'])->name('tags.create');
+    Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+    Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
+    Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+    Route::get('/tags/{id}', [TagController::class, 'view'])->name('tags.show');
+    Route::get('/tags/{id}/edit', [TagController::class, 'edit'])->name('tags.edit');
+    Route::put('/tags/{id}', [TagController::class, 'update'])->name('tags.update');
 
     Route::get('blogs/create', [PostController::class, 'create'])->name('blogs.create');
-    Route::get('blogs', [PostController::class, 'index'])->name('blogs.index');
+    Route::get('blogs', [PostController::class, 'index'])->name('admin.blogs.index');
     Route::post('blogs', [PostController::class, 'store'])->name('blogs.store');
     Route::delete('/blogs/{id}', [PostController::class, 'destroy'])->name('blogs.destroy');
-    Route::get('/blogs/{id}', [PostController::class, 'view'])->name('blogs.show');
+    Route::get('/blogs/{id}', [PostController::class, 'view'])->name('admin.blogs.show');
     Route::get('/blogs/{id}/edit', [PostController::class, 'edit'])->name('blogs.edit');
     Route::put('/blogs/{id}', [PostController::class, 'update'])->name('blogs.update');
 });
 
-    Route::get('/blogs', [BlogController::class, 'index'])->name('users.index');
-    Route::get('/blogs/{id}', [BlogController::class, 'view'])->name('users.show');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('/blogs/{id}', [BlogController::class, 'view'])->name('blogs.show');
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');

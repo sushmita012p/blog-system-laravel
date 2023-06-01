@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h3 class="text-center"> Edit Tag </h3>
-        <form action="{{url('admin/update-tag/'.$tag->id)}}" method="POST">
+        <form action="{{ route('tags.update', $tag->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">

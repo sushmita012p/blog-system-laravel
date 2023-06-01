@@ -41,9 +41,9 @@ class TagController extends Controller
 
         return redirect('admin/tag')->with('message','Tag Updated Successfully');
     }
-    public function delete($id){
+    public function destroy($id){
         $tag=Tag::find($id)->delete();
-        return redirect('admin/tag')->with('message', 'Tag deleted successfully');
+        return redirect('admin/tags')->with('message', 'Tag Deleted Succesfully');
     }
     public function view($id){
         $tag=Tag::find($id);

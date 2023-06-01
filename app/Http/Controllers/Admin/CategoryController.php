@@ -36,7 +36,7 @@ class CategoryController extends Controller
     }
 
     $category = Category::create($data);
-    return redirect('admin/category')->with('message', 'Category Added Successfully');
+    return redirect('admin/categories')->with('message', 'Category Added Successfully');
 }
 
     public function edit($id){
@@ -48,11 +48,11 @@ class CategoryController extends Controller
         
         $category->update($request->all());
 
-        return redirect('admin/category')->with('message','Category Updated Successfully');
+        return redirect('admin/categories')->with('message','Category Updated Successfully');
     }
-    public function delete($id){
+    public function destroy($id){
         $category=Category::find($id)->delete();
-        return redirect('admin/category')->with('message', 'category deleted successfully');
+        return redirect('admin/categories')->with('message', 'category deleted successfully');
     }
     public function view($id){
         $category=Category::find($id);

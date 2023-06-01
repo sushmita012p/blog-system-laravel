@@ -47,7 +47,7 @@
                                     alt="images">
 
                             </td>
-                            <td class="text-center"><a href="{{ route('blogs.show', ['id' => $data->id]) }}"
+                            <td class="text-center"><a href="{{ route('admin.blogs.show', ['id' => $data->id]) }}"
                                     class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
 
                             <td class="text-center"><a href="{{ route('blogs.edit', $data->id) }}"
@@ -70,7 +70,7 @@
             </div>
         </div>
         <a href="{{ url('admin/category') }}" class="btn btn-primary mt-2">View Category</a>
-                <a href="{{url('admin/tag')}}" class="btn btn-primary mt-2">View Tag</a>
+        <a href="{{url('admin/tag')}}" class="btn btn-primary mt-2">View Tag</a>
 
         <a href="{{ url('admin/dashboard') }}" class="btn btn-warning mt-2">Back to Dashboard</a>
     </div>

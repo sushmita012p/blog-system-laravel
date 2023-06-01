@@ -28,7 +28,7 @@
                 <br>
                 <a href="{{ url('admin/blogs') }}" class="btn btn-primary btn-sm mt-3">View Post</a>
                 <br>
-                <a href="{{ url('admin/tag') }}" class="btn btn-primary btn-sm mt-3">View Tag</a>
+                <a href="{{ url('admin/tags') }}" class="btn btn-primary btn-sm mt-3">View Tag</a>
 
             </div>
         </div>

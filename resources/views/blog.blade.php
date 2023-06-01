@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h4>Blogs</h4>
                 <div class="mt-3">
-                    <form action="{{route('users.index')}}" method="GET">
+                    <form action="{{route('blogs.index')}}" method="GET">
                         <select class="form-control" style="width: 200px;" name="categories">
                             <option value="all">All Categories</option>
                             @foreach ($categories as $category)
@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->name }}</h5>
                                 <p class="card-text">{{ $post->description }}</p>
-                                <a href="{{ route('users.show', ['id' => $post->id]) }}"
+                                <a href="{{ route('blogs.show', ['id' => $post->id]) }}"
                                     class="btn btn-info btn-sm">Visit</a>
                             </div>
                         </div>

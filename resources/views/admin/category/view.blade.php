@@ -26,7 +26,7 @@
                     alt="image">
             </div>
         </div>
-        <a href="{{url('admin/category')}}" class="btn btn-warning mt-2">Back to category List</a>
+        <a href="{{url('admin/categories')}}" class="btn btn-warning mt-2">Back to category List</a>
     </div>
 
 

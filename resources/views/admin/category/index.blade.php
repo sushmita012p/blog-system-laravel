@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>Categories:
-                    <a href="{{url('admin/add-category')}}" class="btn btn-primary float-right">Add Category</a>
+                    <a href="{{route('categories.create')}}" class="btn btn-primary float-right">Add Category</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -45,12 +45,21 @@
                             <td>{{$data->description}}</td>
                             <td><img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
                                     alt="images"></td>
-                            <td class="text-center"><a href="{{url('admin/view-category/'.$data->id)}}"
+                            <td class="text-center"><a href="{{ route('categories.show', ['id' => $data->id]) }}"
                                     class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
-                            <td class="text-center"><a href="{{url('admin/edit-category/'.$data->id)}}"
+                            <td class="text-center"><a href="{{ route('categories.edit', ['id' => $data->id]) }}"
                                     class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                            <td class="text-center"><a href="{{url('admin/delete-category/'.$data->id)}}"
-                                    class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                            <td class="text-center">
+                                <form action="{{ route('categories.destroy', ['id' => $data->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        onclick=" return confirm('Are you sure you want to delete this tag?')"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

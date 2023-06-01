@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <h3 class="text-center"> Add Category </h3>
-    <form action="{{url('admin/add-category')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="form-group">
         <label for="formGroupExampleInput">Category Name</label>
