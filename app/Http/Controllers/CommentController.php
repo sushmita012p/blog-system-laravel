@@ -38,9 +38,15 @@ class CommentController extends Controller
 
         if ($comment->user_id === auth()->id()) {
             $comment->delete();
-            return redirect()->back()->with('message', 'Comment deleted successfully.');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'comment deleted successfully.'
+            ], 200);
         } else {
-            return redirect()->back()->with('message', 'You are not authorized to delete this comment.');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'something went wrong.'
+            ], 500);
         }
     }
 }
