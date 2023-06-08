@@ -13,7 +13,7 @@
 
         </div>
     </div>
-    <a href="{{url('admin/tag')}}" class="btn btn-warning mt-2">Back to tag List</a>
+    <a href="{{url('admin/tags')}}" class="btn btn-warning mt-2">Back to tag List</a>
 </div>
 
 @endsection

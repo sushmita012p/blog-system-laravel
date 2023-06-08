@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($category as $data)
+                    @foreach($categories as $data)
                     <tr>
                         <td>{{$data->id}}</td>
                         <td>{{$data->name}}</td>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <a href="{{url('admin/blogs')}}" class="btn btn-primary mt-2">View Post</a>
-    <a href="{{url('admin/tag')}}" class="btn btn-primary mt-2">View Tag</a>
+    <a href="{{url('admin/tags')}}" class="btn btn-primary mt-2">View Tag</a>
     <a href="{{url('admin/dashboard')}}" class="btn btn-warning mt-2">Back to Dashboard</a>
 
 </div>

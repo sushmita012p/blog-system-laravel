@@ -27,12 +27,12 @@
         @endif
         <div class="card card-body">
             <h4 class="card-title text-center">Leave a Comment:</h4>
-            <form action="{{ route('comments.store') }}" method="POST">
+            <form id="commentForm" action="{{ route('comments.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
 
                 <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
-                <button type="submit" class="btn btn-primary mt-3">Submit Comment</button>
+                <button type="submit" id="submitComment" class="btn btn-primary mt-3">Submit Comment</button>
             </form>
         </div>
     </div>
@@ -45,7 +45,7 @@
 
             <div id="comment{{$comment->id}}">
                 <h6 class="card-title mt-2">{{ $comment->user->firstname }} {{ $comment->user->lastname }}
-                    <small>Commented on {{ $comment->created_at }}</small>
+                    <small>Commented {{ $comment->created_at->diffForHumans() }}</small>
                 </h6>
 
                 <p>{{ $comment->comment }}</p>
@@ -84,7 +84,42 @@
 @push('js')
 <script>
     $(document).ready(function(){
-        $('.deleteComment').click(function(){
+
+        $('#commentForm').on('submit', function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                success: function(response) {
+                    $('#comment').val('');
+                    var newComment = '<div id="comment' + response.comment.id + '">' +
+                        '<h6 class="card-title mt-2">' + response.comment.user.firstname + ' ' + response.comment.user.lastname +
+                        '<small>Commented ' + response.created_at_diff + '</small>' +
+                        '</h6>' +
+                        '<p>' + response.comment.comment + '</p>' + 
+                        '<div>' +
+            '<button type="submit" data-comment-id="' + response.comment.id + '"' +
+            'onclick="return confirm(\'Are you sure you want to delete this comment?\')" class="btn btn-danger btn-sm deleteComment"> <i class="fas fa-trash"></i></button>' +
+        '</div>' +
+                        '</div>' ; 
+                        
+
+
+                    $('#comment-container').append(newComment);
+                },
+                error: function(response) {
+                    $('.waitlist-alert').removeClass('d-none').addClass('alert-danger');
+                    $('.waitlist-alert p').html(response.message);
+                }
+            });
+        });
+
+        $(document).on('click','.deleteComment', function(){
+            console.log('dsadasdsasda');
             var id = $(this).data('comment-id');
             console.log(id);
             console.log($('meta[name="csrf-token"]').attr('content'));
@@ -97,7 +132,7 @@
             $.ajax({
                 type:"delete",
                 url: "{{route('comments.destroy', '')}}/" + id,
-    
+
                 success:function(response){
                     $('#comment'+id).hide();
                     

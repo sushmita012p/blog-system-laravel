@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\commentController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,14 +56,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('/blogs/{id}', [PostController::class, 'update'])->name('blogs.update');
 });
 
-    Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
-    Route::get('/blogs/{id}', [BlogController::class, 'view'])->name('blogs.show');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{id}', [BlogController::class, 'view'])->name('blogs.show');
 
-    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
-    Auth::routes();
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Auth::routes();
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
-    
+Route::get('/home', [HomeController::class, 'index'])->name('home');

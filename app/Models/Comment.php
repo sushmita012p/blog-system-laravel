@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class Comment extends Model
 {
