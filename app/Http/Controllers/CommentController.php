@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Repositories\Interfaces\CommentRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class CommentController extends Controller
 {
+    private $commentRepository;
+
+    public function __construct(CommentRepositoryInterface $commentRepository)
+    {
+        $this->commentRepository = $commentRepository;
+    }
+
     public function store(Request $request)
     {
         if (Auth::check()) {
@@ -20,7 +26,7 @@ class CommentController extends Controller
             $data['user_id'] = Auth::user()->id;
 
             try {
-                $comment = Comment::create($data);
+                $comment = $this->commentRepository->createComment($data);
                 $comment->load('user');
                 $created_at_diff = $comment->created_at->diffForHumans();
 
@@ -37,20 +43,22 @@ class CommentController extends Controller
             return redirect('/login')->with('message', 'Please Login First to comment');
         }
     }
+
     public function destroy($id)
     {
-        $comment = Comment::find($id);
+        $comment = $this->commentRepository->findComment($id);
 
-        if ($comment->user_id === auth()->id()) {
-            $comment->delete();
+        if ($comment && $comment->user_id === auth()->id()) {
+            $this->commentRepository->deleteComment($id);
+
             return response()->json([
                 'status' => 'success',
-                'message' => 'comment deleted successfully.'
+                'message' => 'Comment deleted successfully.'
             ], 200);
         } else {
             return response()->json([
                 'status' => 'error',
-                'message' => 'something went wrong.'
+                'message' => 'Something went wrong.'
             ], 500);
         }
     }

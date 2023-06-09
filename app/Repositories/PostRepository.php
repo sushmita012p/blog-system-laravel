@@ -12,7 +12,7 @@ class PostRepository implements PostRepositoryInterface
     {
         return Post::where('user_id', Auth::user()->id)->get();
     }
-
+    
     public function storePost($data)
     {
         return Post::create($data);
