@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class PostRepository implements PostRepositoryInterface
 {
-    public function allPosts()
+    public function allPosts($request)
     {
-        return Post::where('user_id', Auth::user()->id)->get();
+        $query = Post::query();
+
+        if ($request->query('categories') && $request->query('categories') != 'all') {
+            $query = $query->where('category_id', $request->query('categories'));
+        }
+
+        if (Auth::check()) {
+            $posts = $query->where('user_id', Auth::user()->id)->get();
+        } else {
+            $posts = $query->get();
+        }
+        return $posts;
     }
-    
+
     public function storePost($data)
     {
         return Post::create($data);

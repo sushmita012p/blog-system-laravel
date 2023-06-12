@@ -18,9 +18,9 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = $this->postRepository->allPosts();
+        $posts = $this->postRepository->allPosts($request);
         return view('admin.post.index', compact('posts'));
     }
 
