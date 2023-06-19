@@ -2,6 +2,7 @@
 
 @section('title', 'Add Post')
 @section('content')
+
 <h3 class="text-center"> Add Post <a href="{{route('blogs.create')}}"></a> </h3>
 
 <form action="{{route('blogs.store')}}" method="POST" enctype="multipart/form-data">

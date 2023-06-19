@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Repositories\Interfaces\PostRepositoryInterface;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -31,13 +32,8 @@ class PostController extends Controller
         return view('admin.post.create', compact('categories', 'tags'));
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;

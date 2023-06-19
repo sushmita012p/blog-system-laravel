@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\CommentRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -15,32 +14,23 @@ class CommentController extends Controller
         $this->commentRepository = $commentRepository;
     }
 
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        if (Auth::check()) {
-            $request->validate([
-                'comment' => 'required'
-            ]);
 
-            $data = $request->all();
-            $data['user_id'] = Auth::user()->id;
+        $data = $request->all();
 
-            try {
-                $comment = $this->commentRepository->createComment($data);
-                $comment->load('user');
-                $created_at_diff = $comment->created_at->diffForHumans();
+        try {
+            $comment = $this->commentRepository->createComment($data);
+            $created_at_diff = $comment->created_at->diffForHumans();
 
-                $responseData = [
-                    'comment' => $comment,
-                    'created_at_diff' => $created_at_diff,
-                ];
+            $responseData = [
+                'comment' => $comment,
+                'created_at_diff' => $created_at_diff,
+            ];
 
-                return response()->json($responseData);
-            } catch (\Exception $e) {
-                return response()->json(['error' => $e->getMessage()], 500);
-            }
-        } else {
-            return redirect('/login')->with('message', 'Please Login First to comment');
+            return response()->json($responseData);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

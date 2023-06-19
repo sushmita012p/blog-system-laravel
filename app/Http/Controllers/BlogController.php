@@ -21,9 +21,9 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        
-        $post = $this->postRepository->allPosts($request);
-        return view('blog', compact('post', 'categories'));
+
+        $posts = $this->postRepository->allPosts($request);
+        return view('blog', compact('posts', 'categories'));
     }
     public function view($id)
     {

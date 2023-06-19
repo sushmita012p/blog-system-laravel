@@ -16,11 +16,11 @@ class PostRepository implements PostRepositoryInterface
             $query = $query->where('category_id', $request->query('categories'));
         }
 
-        if (Auth::check()) {
-            $posts = $query->where('user_id', Auth::user()->id)->get();
-        } else {
-            $posts = $query->get();
+        if ($request->query('search')) {
+            $query = $query->where('name', 'like', '%' . $request->query('search') . '%')->orWhere('description', 'like', '%' . $request->query('search') . '%');
         }
+
+        $posts = $query->paginate(3);
         return $posts;
     }
 

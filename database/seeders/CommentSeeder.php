@@ -17,19 +17,19 @@ class CommentSeeder extends Seeder
     {
         $user = User::first();
         $post = Post::first();
-       
+
 
         DB::table('comments')->insert([
             'comment' => 'Wonderful',
             'created_at' => '2023-05-23 05:32:40',
-            'user_id' => 2,
+            'commented_by' => 'Prazuca',
             'post_id' => 1,
         ]);
-        
+
         DB::table('comments')->insert([
             'comment' => 'Amazing',
             'created_at' => '2023-05-23 05:32:40',
-            'user_id' => 2,
+            'commented_by' => 'Sabana',
             'post_id' => 2,
         ]);
     }

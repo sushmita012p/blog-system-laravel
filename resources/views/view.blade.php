@@ -7,20 +7,31 @@
 <style>
     .blog-image {
         width: 100%;
-        height: auto;
+        height: 500px;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
     }
 </style>
 
 <div class="container-fluid">
     <div class="text-center">
-        <img src="{{ url('storage/images/' . $post->image) }}" class="blog-image" alt="image">
+        <img src="{{ url('storage/images/' . $post->image) }}" class="blog-image mt-2" alt="image">
+        <div class="d-flex justify-content-center mt-2">
+            <p class="mr-5">Author: {{ $post->user->firstname }} {{ $post->user->lastname }}</p>
+            <p class="mr-5">Posted Date: {{ $post->created_at->format('Y-m-d') }}</p>
+            <p class="mr-5">Number of Comments: {{ count($post->comments) }}</p>
+        </div>
     </div>
     <div class="mt-3">
         <h4>{{ $post->name }}</h4>
         <p>{{ $post->description }}</p>
     </div>
 
-    @if (Auth::check())
+
     <div class="comment-desc mt-4">
         @if (session('message'))
         <h6 class="alert alert-warning">{{ session('message') }}</h6>
@@ -31,20 +42,26 @@
                 @csrf
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
+                <div class="form-group">
+                    <label for="commented_by">Name:</label>
+                    <input type="text" class="form-control" name="commented_by" id="commented_by" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
+                </div>
                 <button type="submit" id="submitComment" class="btn btn-primary mt-3">Submit Comment</button>
             </form>
         </div>
     </div>
-    @endif
-
     <div class="comment-details">
         <h4 class="mt-3 comment-toggle">Comments:</h4>
         <div id="comment-container" class="card card-body">
             @foreach ($post->comments as $comment)
 
             <div id="comment{{$comment->id}}">
-                <h6 class="card-title mt-2">{{ $comment->user->firstname }} {{ $comment->user->lastname }}
+                <h6 class="card-title mt-2">{{ $comment->commented_by }}
                     <small>Commented {{ $comment->created_at->diffForHumans() }}</small>
                 </h6>
 
@@ -54,22 +71,20 @@
                     <button type="submit" data-comment-id="{{$comment->id}}"
                         onclick="return confirm('Are you sure you want to delete this comment?')"
                         class="btn btn-danger btn-sm deleteComment"> <i class="fas fa-trash"></i></button>
-
                 </div>
                 @endif
             </div>
             @endforeach
         </div>
     </div>
-
     <div class="related-blogs mt-4">
-        <h4>Related Blogs:</h4>
+        <h5>Related Blogs </h5>
         <div class="row">
             @foreach ($relatedBlogs as $blog)
             <div class="col-md-4">
                 <div class="card mb-3">
-                    <img src="{{ url('storage/images/' . $blog->image) }}" alt="image" height="100px" width="100px"
-                        class="card-img-top">
+
+                    <img src="{{ url('storage/images/' . $blog->image) }}" alt="image" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $blog->name }}</h5>
                     </div>
@@ -87,6 +102,7 @@
 
         $('#commentForm').on('submit', function(event) {
             event.preventDefault();
+            console.log('Submit button clicked');
 
             var formData = $(this).serialize();
 
@@ -95,9 +111,10 @@
                 url: $(this).attr('action'),
                 data: formData,
                 success: function(response) {
+                    $('#commented_by').val('');
                     $('#comment').val('');
                     var newComment = '<div id="comment' + response.comment.id + '">' +
-                        '<h6 class="card-title mt-2">' + response.comment.user.firstname + ' ' + response.comment.user.lastname +
+                        '<h6 class="card-title mt-2">' + response.comment.commented_by + ' ' + 
                         '<small>Commented ' + response.created_at_diff + '</small>' +
                         '</h6>' +
                         '<p>' + response.comment.comment + '</p>' + 
