@@ -45,11 +45,12 @@
     }
 
     .text-container {
-        background-color: #bfc225;
+        background-color: rgba(0, 123, 255, .25);
         padding: 100px;
         margin-top: 90px;
-        border-radius: 10px;
-        width: 50%;
+        border-radius: 50px;
+        width: 80%;
+        color: #fff;
     }
 
     .about {
@@ -61,6 +62,10 @@
         text-decoration: none;
     }
 
+    .about :hover {
+        color: #ffd700;
+    }
+
     .social-icons-container {
         display: flex;
         justify-content: center;
@@ -69,7 +74,7 @@
 
     .social-icons-container a {
         margin: 0 10px;
-        color: #333;
+        color: #fff;
         font-size: 24px;
     }
 

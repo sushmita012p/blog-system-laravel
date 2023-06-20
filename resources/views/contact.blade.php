@@ -21,7 +21,7 @@
     }
 
     .contact-form button {
-        background-color: #007bff;
+        background-color: #268974;
         color: #fff;
         padding: 10px 20px;
         border: none;
@@ -29,7 +29,7 @@
     }
 
     .contact-form button:hover {
-        background-color: #0056b3;
+        background-color: #000;
     }
 
     .social-box {
@@ -38,15 +38,13 @@
     }
 
     .social-box a {
-        display: inline-block;
         margin: 0 10px;
-        color: #007bff;
+        color: #000;
         font-size: 24px;
-        transition: color 0.3s;
     }
 
     .social-box a:hover {
-        color: #0056b3;
+        color: #ccc;
     }
 </style>
 
@@ -71,18 +69,23 @@
             <div class="col-md-6">
                 <div class="contact-form">
                     <h3>Contact Me</h3>
-                    <form>
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea class="form-control" rows="5" name="message" placeholder="Your Message"
+                                required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn">Send Message</button>
                     </form>
+                    @if (session('message'))
+                    <div class="alert alert-success mt-2">{{ session('message') }}</div>
+                    @endif
                 </div>
             </div>
         </div>

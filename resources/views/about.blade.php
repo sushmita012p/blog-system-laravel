@@ -35,7 +35,7 @@
             <h6>JavaScript (ES6)</h6>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
             </div>
             <h6>React</h6>
             <div class="progress">
@@ -51,6 +51,11 @@
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+            </div>
+            <h6>GIT</h6>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
             </div>
         </div>
     </div>

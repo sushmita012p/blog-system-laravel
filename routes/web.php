@@ -69,3 +69,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

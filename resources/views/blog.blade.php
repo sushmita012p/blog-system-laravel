@@ -38,7 +38,7 @@
                             <h5 class="card-title">{{ $post->name }}</h5>
                             <p class="card-text post-desc">{{ $post->description }}</p>
                             <a href="{{ route('blogs.show', ['id' => $post->id]) }}"
-                                class="btn btn-info btn-sm">Visit</a>
+                                class="btn btn-sm visit-blog">Visit</a>
                         </div>
                     </div>
                 </div>
@@ -77,10 +77,15 @@
         object-fit: cover;
     }
 
+    .visit-blog {
+        background-color: #268974;
+        color: #fff;
+    }
+
     .page-item .page-link {
-        border: 1px solid #5f9267;
+        border: 1px solid #268974;
         padding: 5px 10px;
-        color: #5f9267;
+        color: #268974;
         background-color: azure;
         text-decoration: none;
     }
