@@ -32,15 +32,16 @@
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->category->name }}</td>
                         <td>{{ $data->name }}</td>
+                        <td>{{ $data->slug }}</td>
                         <td>{{ $data->description }}</td>
                         <td> <img src="{{ url('storage/images/' . $data->image) }}" width="50px" height="50px"
                                 alt="images">
 
                         </td>
-                        <td class="text-center"><a href="{{ route('admin.blogs.show', ['id' => $data->id]) }}"
+                        <td class="text-center"><a href="{{ route('posts.show', $data->slug)}}"
                                 class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a></td>
 
-                        <td class="text-center"><a href="{{ route('blogs.edit', $data->id) }}"
+                        <td class="text-center"><a href="{{ route('posts.edit', $data->slug) }}"
                                 class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
                         <td class="text-center">
                             <form action="{{ route('blogs.destroy', ['id' => $data->id]) }}" method="POST">
@@ -58,6 +59,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-center pagination">
+        {{ $posts->links() }}
     </div>
     <a href="{{ url('admin/categories') }}" class="btn btn-primary mt-2">View Category</a>
     <a href="{{url('admin/tags')}}" class="btn btn-primary mt-2">View Tag</a>

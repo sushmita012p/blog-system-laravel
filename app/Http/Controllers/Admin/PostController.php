@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Post;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -52,9 +54,9 @@ class PostController extends Controller
         return redirect('admin/blogs')->with('message', 'Post Added Successfully');
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = $this->postRepository->findPost($id);
+        $post = $this->postRepository->findPost($post->id);
         return view('admin.post.edit', compact('post'));
     }
 
@@ -88,9 +90,9 @@ class PostController extends Controller
         return redirect('admin/blogs')->with('message', 'Post deleted successfully');
     }
 
-    public function view($id)
+    public function view(Post $post)
     {
-        $post = $this->postRepository->findPost($id);
+        $post = $this->postRepository->findPost($post->id);
         return view('admin.post.view', compact('post'));
     }
 }

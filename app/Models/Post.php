@@ -12,11 +12,12 @@ use App\Models\Tag;
 class Post extends Model
 {
     use HasFactory;
-    protected $table='posts';
+    protected $table = 'posts';
     protected $fillable = [
         'name',
         'description',
         'image',
+        'slug',
         'category_id',
         'user_id',
     ];
@@ -34,9 +35,7 @@ class Post extends Model
     }
 
     public function tags()
-{
-    return $this->belongsToMany(Tag::class, 'post_tag', 'post_id','tag_id');
-}
-
-    
+    {
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
+}

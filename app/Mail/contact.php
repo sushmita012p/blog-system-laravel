@@ -41,7 +41,6 @@ class Contact extends Mailable
             markdown: 'emails.message.contact',
             with: [
                 'message' => $this->message->message,
-
             ],
         );
     }

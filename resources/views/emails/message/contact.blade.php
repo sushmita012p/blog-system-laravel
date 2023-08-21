@@ -1,9 +1,8 @@
 <x-mail::message>
 
-    #Thank you for contacting me.
+    Hello, <strong>{{ $message['name'] }}</strong>
+    Your message has been received. I will get back to you soon.
 
-    I will get back to you soon.
-    Till then you can visit my blog page.
-    Thanks
+    Thanks,
     Sushmita Poudel
 </x-mail::message>

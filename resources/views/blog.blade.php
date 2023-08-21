@@ -7,8 +7,8 @@
         <div class="card-header">
             <div class="row justify-content-between">
                 <div class="col-auto">
-                    <form action="{{route('blogs.index')}}" method="GET">
-                        <select class="form-control" style="width: 200px;" name="categories">
+                    <form action="{{route('blogs.index')}}" method="GET" class="d-flex">
+                        <select class="form-control mr-2" style="width: 200px;" name="categories">
                             <option value="all">All Categories</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @if(request()->query('categories') == $category->id)
@@ -16,7 +16,7 @@
                                 @endif>{{$category->name}}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-success mt-2">Filter</button>
+                        <button class="btn btn-success">Filter</button>
                     </form>
                 </div>
 

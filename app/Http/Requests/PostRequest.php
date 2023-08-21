@@ -25,6 +25,7 @@ class PostRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'slug' => 'required|unique:posts'
         ];
     }
 }

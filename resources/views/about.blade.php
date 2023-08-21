@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row mt-2">
+    <div class="row mt-5">
         <div class="col-md-3">
             <h2>About Me</h2>
         </div>
@@ -57,6 +57,17 @@
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
             </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <h2>Education</h2>
+        </div>
+        <div class="col-md-9">
+            <h5>Bachelor in Information Management (BIM) &nbsp; &nbsp; &nbsp; &nbsp;2016-2021</h5>
+            <h6>Asian School of Management and Technology</h6>
+            <p>Tribhuvan University</p>
         </div>
     </div>
     <hr>

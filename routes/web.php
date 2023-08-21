@@ -53,8 +53,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('blogs', [PostController::class, 'index'])->name('admin.blogs.index');
     Route::post('blogs', [PostController::class, 'store'])->name('blogs.store');
     Route::delete('/blogs/{id}', [PostController::class, 'destroy'])->name('blogs.destroy');
-    Route::get('/blogs/{id}', [PostController::class, 'view'])->name('admin.blogs.show');
-    Route::get('/blogs/{id}/edit', [PostController::class, 'edit'])->name('blogs.edit');
+    Route::get('/posts/{post:slug}', [PostController::class, 'view'])->name('posts.show');
+    Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/blogs/{id}', [PostController::class, 'update'])->name('blogs.update');
 });
 

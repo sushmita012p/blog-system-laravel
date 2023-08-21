@@ -35,8 +35,6 @@ class ContactController extends Controller
 
         Mail::to($message->email)->send(new Contact($message));
 
-        //$contactMessage->notify(new SendMessage($message));
-
         return redirect('/contact')->with('message', 'Message sent successfully');
     }
 }
